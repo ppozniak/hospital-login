@@ -1,0 +1,24 @@
+{
+  "name": "hospital-login",
+  "version": "0.0.1",
+  "description": "An example app of hospital login",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppozniak/hospital-login.git"
+  },
+  "keywords": [
+    "hospital",
+    "login",
+    "2-key"
+  ],
+  "author": "Patryk Pozniak <ppozniak95@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ppozniak/hospital-login/issues"
+  },
+  "homepage": "https://github.com/ppozniak/hospital-login#readme"
+}
