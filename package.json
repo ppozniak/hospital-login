@@ -4,6 +4,8 @@
   "description": "An example app of hospital login",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html",
     "test": "npm test"
   },
   "repository": {
@@ -20,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/ppozniak/hospital-login/issues"
   },
-  "homepage": "https://github.com/ppozniak/hospital-login#readme"
+  "homepage": "https://github.com/ppozniak/hospital-login#readme",
+  "devDependencies": {
+    "parcel-bundler": "1.12.4"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
 }
