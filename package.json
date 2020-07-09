@@ -33,7 +33,9 @@
     "@babel/core": "7.10.4",
     "@babel/preset-env": "7.10.4",
     "@babel/preset-react": "7.10.4",
+    "@svgr/parcel-plugin-svgr": "5.4.0",
     "@testing-library/react": "10.4.4",
+    "autoprefixer": "9.8.4",
     "babel-jest": "26.1.0",
     "eslint": "7.4.0",
     "eslint-config-google": "0.14.0",
@@ -46,13 +48,16 @@
     "jest": "26.1.0",
     "lint-staged": "10.2.11",
     "parcel-bundler": "1.12.4",
-    "react-axe": "3.5.3"
+    "postcss-modules": "3.2.0",
+    "react-axe": "3.5.3",
+    "sass": "1.26.10"
   },
   "dependencies": {
     "prettier": "2.0.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router-dom": "5.2.0"
+    "react-router-dom": "5.2.0",
+    "sanitize.css": "11.0.1"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
