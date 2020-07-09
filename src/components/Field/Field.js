@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./field.module.scss";
 
+// @TODO: These messages are not helpful
+// They should be more like "Last name should be no longer than 50 characters."
 const errorMessageMapping = {
   required: "This field is required",
   max: "Provided value is too long",

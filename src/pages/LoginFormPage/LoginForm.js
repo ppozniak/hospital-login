@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   zip: yup.string().required().min(5).max(7),
 });
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, loading }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -27,6 +27,7 @@ const LoginForm = ({ onSubmit }) => {
           id="lastName"
           register={register}
           error={errors.lastName}
+          disabled={loading}
         />
         <Field
           labelText="Date of birth (day/month/year)"
@@ -34,15 +35,19 @@ const LoginForm = ({ onSubmit }) => {
           type="date"
           register={register}
           error={errors.dob}
+          disabled={loading}
         />
         <Field
           labelText="Post code"
           id="zip"
           register={register}
           error={errors.zip}
+          disabled={loading}
         />
 
-        <button className={styles.submit}>Submit</button>
+        <button disabled={loading} className={styles.submit}>
+          {loading ? "Submitting..." : "Submit"}
+        </button>
       </fieldset>
     </form>
   );
@@ -50,6 +55,7 @@ const LoginForm = ({ onSubmit }) => {
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
 };
 
 export default LoginForm;

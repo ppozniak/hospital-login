@@ -13,6 +13,11 @@
   &[aria-invalid="true"] {
     border-color: red;
   }
+
+  &[disabled] {
+    background-color: #cacaca;
+    opacity: 0.25;
+  }
 }
 
 .error {

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import "regenerator-runtime/runtime";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Turning on AXE");
