@@ -1,0 +1,21 @@
+.field {
+  margin-bottom: 0.3rem;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.input {
+  display: block;
+
+  &[aria-invalid="true"] {
+    border-color: red;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
