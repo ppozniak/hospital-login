@@ -1,0 +1,46 @@
+.method-list {
+  padding: 0;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.method-item {
+  display: block;
+  list-style-type: none;
+  margin-bottom: 0.3rem;
+}
+
+.method-button {
+  width: 100%;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease-out;
+  text-align: left;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1px solid #000;
+    margin-right: 1rem;
+  }
+
+  &.selected:before {
+    background-color: #000;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #cecece;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}

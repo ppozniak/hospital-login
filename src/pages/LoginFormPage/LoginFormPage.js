@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
-import { getAuthorisationMethods } from "../../api/index";
+import { getAuthorizationMethods } from "../../api";
+import { useHistory } from "react-router-dom";
 
 const LoginFormPage = () => {
   const [loading, setLoading] = useState(false);
+  const { push } = useHistory();
 
   const handleSubmit = async (data) => {
-    console.log(data);
     setLoading(true);
     try {
-      const authorisationMethods = await getAuthorisationMethods(data);
-      console.log(authorisationMethods);
+      const authorizationMethods = await getAuthorizationMethods(data);
+      push("/auth-method", authorizationMethods);
     } catch (error) {
       // @TODO: Error handling - showing to user
       console.log(error);
-    } finally {
       setLoading(false);
     }
   };
