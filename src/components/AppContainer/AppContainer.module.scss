@@ -1,11 +1,24 @@
+$breakpoint: 50em;
+$containerMaxWidth: 40rem;
+
 .container {
   padding: 0.5rem;
+
+  @media (min-width: $breakpoint) {
+    max-width: $containerMaxWidth;
+    margin: 0 auto;
+  }
 }
 
 .header {
   padding: 0.5rem;
   border-bottom: 1px solid #ccc;
   box-shadow: 1px 1px 3px #00000005;
+
+  @media (min-width: $breakpoint) {
+    max-width: $containerMaxWidth;
+    margin: 0 auto;
+  }
 }
 
 .logo {
