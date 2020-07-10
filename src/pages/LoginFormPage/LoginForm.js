@@ -22,13 +22,16 @@ const LoginForm = ({ onSubmit, loading }) => {
         <Field
           labelText="Date of birth (day/month/year)"
           id="dob"
-          type="date"
           register={register({
             required: true,
-            validate: { isDateValid: (value) => validateDate(value) },
+            validate: {
+              isDateValid: (value) =>
+                validateDate(value, "boolean", "dd/mm/yyyy"),
+            },
           })}
           error={errors.dob}
           disabled={loading}
+          placeholder="23/12/1960"
         />
         <Field
           labelText="Post code"
