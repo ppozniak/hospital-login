@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { selectAuthorizationMethod } from "../../api";
-import Field from "../../components/Field";
-import { useForm } from "react-hook-form";
 import styles from "./authMethodPage.module.scss";
 import classNames from "classnames";
-import { validatePin } from "../../api";
+import PinForm from "./PinForm";
 
 const AuthMethodPage = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
-  const [isPinInvalid, setIsPinInvalid] = useState(false);
-  const [awaitingPinValidation, setAwaitingPinValidation] = useState(false);
   const { state } = useLocation();
   const { push } = useHistory();
-  const { register, handleSubmit } = useForm();
 
   if (!state || !state.length) {
     push("/");
@@ -30,19 +25,6 @@ const AuthMethodPage = () => {
     } catch (error) {
       console.error(error); // @TODO error handling
       setButtonsDisabled(false);
-    }
-  };
-
-  const onSubmitPin = async ({ pin }) => {
-    setIsPinInvalid(false);
-    setAwaitingPinValidation(true);
-    try {
-      await validatePin(pin);
-      push("/home");
-    } catch (error) {
-      setIsPinInvalid(true);
-      setAwaitingPinValidation(false);
-      console.log("invalid pin");
     }
   };
 
@@ -72,31 +54,7 @@ const AuthMethodPage = () => {
       </ul>
 
       <div aria-live="polite" role="region">
-        {selectedMethod && (
-          <>
-            <p>
-              We have sent you a 4 digit pin at {selectedMethod.value}. Please
-              fill it in to proceed with login.
-            </p>
-            <form onSubmit={handleSubmit(onSubmitPin)}>
-              <Field
-                labelText="Enter received 4 digit pin code"
-                id="pin"
-                register={register}
-                maxLength={4}
-                minLength={4}
-                placeholder="5341"
-                disabled={awaitingPinValidation}
-              />
-              <button disabled={awaitingPinValidation}>Submit</button>
-              {isPinInvalid && (
-                <div role="alert" className={styles.error}>
-                  The pin you provided is invalid
-                </div>
-              )}
-            </form>
-          </>
-        )}
+        {selectedMethod && <PinForm contactValue={selectedMethod.value} />}
       </div>
     </div>
   );
