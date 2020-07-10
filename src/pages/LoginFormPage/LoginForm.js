@@ -25,7 +25,7 @@ const LoginForm = ({ onSubmit, loading }) => {
           type="date"
           register={register({
             required: true,
-            validate: { isDateValid: (value) => validateDate(value) }, // @TODO Really validate is date is valid
+            validate: { isDateValid: (value) => validateDate(value) },
           })}
           error={errors.dob}
           disabled={loading}
