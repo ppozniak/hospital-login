@@ -3,7 +3,7 @@ import Field from "../../components/Field";
 import { validatePin } from "../../api";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form/dist/index.ie11";
 import styles from "./authMethodPage.module.scss";
 
 const PinForm = ({ contactValue }) => {

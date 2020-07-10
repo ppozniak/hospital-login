@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "regenerator-runtime/runtime";
+import "core-js/features/promise";
+import "core-js/features/object/entries";
+import "core-js/features/object/values";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Turning on AXE");

@@ -1,22 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./LoginForm.module.scss";
-import { yupResolver } from "@hookform/resolvers";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-
+import { useForm } from "react-hook-form/dist/index.ie11";
+import validateDate from "validate-date";
 import Field from "../../components/Field";
 
-const schema = yup.object().shape({
-  lastName: yup.string().required().max(50),
-  dob: yup.date().required(),
-  zip: yup.string().required().min(5).max(7),
-});
-
 const LoginForm = ({ onSubmit, loading }) => {
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { register, handleSubmit, errors } = useForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -25,7 +15,7 @@ const LoginForm = ({ onSubmit, loading }) => {
         <Field
           labelText="Last name"
           id="lastName"
-          register={register}
+          register={register({ maxLength: 50, required: true })}
           error={errors.lastName}
           disabled={loading}
         />
@@ -33,14 +23,17 @@ const LoginForm = ({ onSubmit, loading }) => {
           labelText="Date of birth (day/month/year)"
           id="dob"
           type="date"
-          register={register}
+          register={register({
+            required: true,
+            validate: { isDateValid: (value) => validateDate(value) }, // @TODO Really validate is date is valid
+          })}
           error={errors.dob}
           disabled={loading}
         />
         <Field
           labelText="Post code"
           id="zip"
-          register={register}
+          register={register({ required: true, maxLength: 7, minLength: 5 })}
           error={errors.zip}
           disabled={loading}
         />

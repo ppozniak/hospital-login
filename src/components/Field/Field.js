@@ -6,9 +6,9 @@ import styles from "./field.module.scss";
 // They should be more like "Last name should be no longer than 50 characters."
 const errorMessageMapping = {
   required: "This field is required",
-  max: "Provided value is too long",
-  min: "Provided value is too short",
-  typeError: "Must be a valid date",
+  maxLength: "Provided value is too long",
+  minLength: "Provided value is too short",
+  isDateValid: "Must be a valid date",
 };
 
 const Field = ({ type = "text", labelText, id, register, error, ...rest }) => (
@@ -38,7 +38,12 @@ Field.propTypes = {
   labelText: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   error: PropTypes.shape({
-    type: PropTypes.oneOf(["required", "max", "min", "typeError"]),
+    type: PropTypes.oneOf([
+      "required",
+      "maxLength",
+      "minLength",
+      "isDateValid",
+    ]),
   }),
   register: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
