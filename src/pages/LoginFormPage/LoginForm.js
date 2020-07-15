@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form/dist/index.ie11";
-import validateDate from "validate-date";
 import Field from "../../components/Field";
+import isValidDate from "date-fns/isValid";
+import parseISO from "date-fns/parseISO";
 
 const LoginForm = ({ onSubmit, loading }) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, getValues } = useForm();
+  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -19,20 +21,63 @@ const LoginForm = ({ onSubmit, loading }) => {
           error={errors.lastName}
           disabled={loading}
         />
-        <Field
-          labelText="Date of birth (day/month/year)"
-          id="dob"
-          register={register({
-            required: true,
-            validate: {
-              isDateValid: (value) =>
-                validateDate(value, "boolean", "dd/mm/yyyy"),
-            },
-          })}
-          error={errors.dob}
-          disabled={loading}
-          placeholder="23/12/1960"
-        />
+
+        <fieldset className={styles.inlineFieldset}>
+          <legend>Date of birth</legend>
+          <div className={styles.fieldsGroup}>
+            <Field
+              labelText="Day"
+              id="dob.day"
+              register={register({
+                required: true,
+                pattern: /\d{2}/,
+                maxLength: 2,
+              })}
+              error={errors.dob}
+              disabled={loading}
+              placeholder="22"
+              maxLength="2"
+            />
+            <Field
+              labelText="Month"
+              id="dob.month"
+              register={register({
+                required: true,
+                pattern: /\d{2}/,
+                maxLength: 2,
+              })}
+              error={errors.dob}
+              disabled={loading}
+              placeholder="05"
+              maxLength="2"
+            />
+            <Field
+              labelText="Year"
+              id="dob.year"
+              register={register({
+                validate: {
+                  isValidDate: () => {
+                    const values = getValues().dob;
+                    const date = parseISO(
+                      `${values.year}-${values.month}-${values.day}`
+                    );
+                    const isValid = isValidDate(date);
+                    console.log(isValid);
+                    return isValid;
+                  },
+                },
+              })}
+              error={errors.dob}
+              disabled={loading}
+              placeholder="1980"
+              maxLength="4"
+              pattern="\d{4}"
+            />
+          </div>
+          {errors.dob && (
+            <div className={styles.fieldsGroupError}>Invalid date of birth</div>
+          )}
+        </fieldset>
         <Field
           labelText="Post code"
           id="zip"
