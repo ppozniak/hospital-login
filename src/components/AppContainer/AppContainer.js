@@ -5,13 +5,15 @@ import Logo from "../../assets/logo.svg";
 
 const AppContainer = ({ children }) => {
   return (
-    <>
-      <header className={styles.header}>
-        <Logo className={styles.logo} />
-        <h1 className="sr-only">DrDoctor website</h1>
-      </header>
-      <main className={styles.container}>{children}</main>
-    </>
+    <div className={styles.appPositioner}>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <Logo className={styles.logo} />
+          <h1 className="sr-only">DrDoctor website</h1>
+        </header>
+        <main>{children}</main>
+      </div>
+    </div>
   );
 };
 

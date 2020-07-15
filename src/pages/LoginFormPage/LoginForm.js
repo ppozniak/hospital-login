@@ -8,7 +8,6 @@ import parseISO from "date-fns/parseISO";
 
 const LoginForm = ({ onSubmit, loading }) => {
   const { register, handleSubmit, errors, getValues } = useForm();
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +61,6 @@ const LoginForm = ({ onSubmit, loading }) => {
                       `${values.year}-${values.month}-${values.day}`
                     );
                     const isValid = isValidDate(date);
-                    console.log(isValid);
                     return isValid;
                   },
                 },
